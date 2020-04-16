@@ -101,6 +101,21 @@ class HttpUtil
             $curlHeaders[] = $key . ': ' . $value;
         }
 
+        /**
+         * Builds the original HTTP headers from status and header components.
+         *
+         * @param array $headers List of headers. Example: ['Content-Type: text/html', '...']
+         * @return array Key/value pairs of headers, e.g. ['Content-Type' => 'text/html']
+         */
+        public static function buildHeaders(Response $response) {
+        $headers = array();
+        $headers[] = self::formatAsStatusString($response);
+        foreach (self::formatHeadersForCurl($response->getHeaders()) as $headerLine) {
+            $headers[] = $headerLine;
+        }
+        return $headers;
+    }
+
         return $curlHeaders;
     }
 
