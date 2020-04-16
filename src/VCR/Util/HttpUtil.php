@@ -84,6 +84,9 @@ class HttpUtil
      */
     public static function parseRawHeader($rawHeader)
     {
+        if(is_array($rawHeader))
+            return $rawHeader;
+
         return explode("\r\n", trim($rawHeader));
     }
 
