@@ -8,7 +8,7 @@ class StreamProcessorCodeTransform extends AbstractCodeTransform
 
     private static $patterns = array(
         // Substitute for the $http_response_header variable, unless it's used as an assignment.
-        '/\$http_response_header\b(?!\s*=)/i' => '\VCR\LibraryHooks\StreamWrapperHook::getLastResponseHeaders()'
+        '/(?<!&)\$http_response_header\b(?!\s*=)/i' => '\VCR\LibraryHooks\StreamWrapperHook::getLastResponseHeaders()'
     );
 
     /**
